@@ -1,4 +1,4 @@
-# Sistema de Gerenciamento de Produtos - AgilStore
+# Sistema de Gerenciamento de Produtos - AgilStore 💻
 
 Este sistema foi desenvolvido em Python para gerenciar o inventário de produtos de uma loja fictícia chamada **AgilStore**. Ele permite o controle completo de produtos, incluindo cadastro, atualização, exclusão e geração de relatórios.
 
@@ -9,36 +9,34 @@ Este sistema foi desenvolvido em Python para gerenciar o inventário de produtos
 - 📄 **JSON**: Formato utilizado para persistência de dados.
 - 💻 **CLI (Command-Line Interface)**: Interface do sistema baseada em linha de comando.
 
-## Funcionalidades Adicionadas pela Desenvolvedora
+## 👩‍💻 Funcionalidades Adicionadas pela Desenvolvedora  
 
 **Cadastro de Lote, Marca e Valor de Custo**: Para melhorar a gestão do inventário e facilitar a identificação de produtos em situações críticas, como **recalls**, foram adicionados campos para **lote**, **marca** e **valor de custo** aos produtos cadastrados no sistema.
 
-  ### Como Funciona:
+  ### ⚙️ Como Funciona: 
 **Lote**: Cada produto pode ser associado a um número de lote. Esse campo é crucial em caso de **recall** (quando a empresa precisa recolher produtos defeituosos). O lote permite rastrear rapidamente quais unidades de um produto foram afetadas.
 
 **Marca**: O sistema agora permite registrar a **marca** do produto, o que facilita a organização do inventário e a identificação de produtos de diferentes fabricantes.
 
 **Valor de Custo**: O **valor de custo** é registrado para cada produto, permitindo calcular a margem de lucro e gerenciar o controle financeiro do inventário.
 
-  ### Benefícios:
-  **Facilidade no Recall de Produtos**: Quando um produto é chamado de volta pelo fabricante (recall), a identificação rápida de lotes afetados é essencial. Com o campo de lote, o sistema facilita essa tarefa.
-
-**Controle Financeiro Melhorado**: O valor de custo permite calcular a margem de lucro com mais precisão e ajuda na análise financeira do estoque.
-
- **Organização do Inventário**: A inclusão da marca ajuda a organizar e filtrar produtos com mais eficiência, especialmente quando o inventário contém produtos de diversos fabricantes.
-
-  ### Exemplo:
+### 🌟 Benefícios:
+ - ✅ Facilidade na rastreabilidade de lotes para recalls.
+- 💡 Melhor controle financeiro com registro do custo.
+- 🚀 Organização eficiente com o uso de categorias e marcas.
+  
+### Exemplo:
 Se um produto eletrônico de marca **Samsung** for parte de um **recall** e o lote afetado for **L123**, a funcionalidade de lote ajuda a localizar todas as unidades desse lote rapidamente, tornando o processo de recall muito mais eficiente.
   
 
 ## Funcionalidades Principais
 
-- **Adicionar Produto**: Cadastro com nome, categoria, marca, lote, preço e quantidade.
-- **Listar Produtos**: Visualização em formato de tabela.
-- **Atualizar Produto**: Modificação de dados existentes.
-- **Excluir Produto**: Remoção segura com confirmação.
-- **Buscar Produto**: Busca por ID, nome, categoria, marca ou lote.
-- **Persistência de Dados**: Armazena informações em JSON.
+- **Adicionar Produto**: Cadastro com nome, categoria, marca, lote, preço e quantidade. ✅
+- **Listar Produtos**: Visualização em formato de tabela.✅
+- **Atualizar Produto**: Modificação de dados existentes.✅
+- **Excluir Produto**: Remoção segura com confirmação.✅
+- **Buscar Produto**: Busca por ID, nome, categoria, marca ou lote.✅
+- **Persistência de Dados**: Armazena informações em JSON.✅
 
 ## Como Avaliar e Testar o Sistema
 
@@ -98,7 +96,7 @@ Contribuições são bem-vindas! Siga as etapas abaixo para colaborar:
 
 Obrigado por contribuir!
 
-### **7. Entre em Contato Comigo!**
+### **📧 7. Entre em Contato Comigo!**
 Criado por [Carolina Jacoby](https://github.com/carolina_jacoby).
 
 Se você tiver dúvidas ou encontrar problemas, entre em contato através do email: **anacarolinajacoby0@gmail.com**.
