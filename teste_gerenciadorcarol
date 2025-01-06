@@ -1,0 +1,49 @@
+import unittest
+from gerenciamento_produtos import carregar_produtos, salvar_produtos, adicionar_produto, listar_produtos, atualizar_produto, excluir_produto, buscar_produto
+
+class TestGerenciamentoProdutos(unittest.TestCase):
+
+    def setUp(self):
+        """
+        Configuração inicial: Define um inventário de teste.
+        """
+        global produtos
+        produtos = [
+            {"id": 1, "nome": "Smartphone", "categoria": "Eletrônicos", "marca": "Samsung", "lote": "L123", "valor_custo": 1500.0, "quantidade": 50, "preco": 2500.0},
+            {"id": 2, "nome": "Notebook", "categoria": "Eletrônicos", "marca": "Dell", "lote": "L456", "valor_custo": 3000.0, "quantidade": 20, "preco": 4500.0}
+        ]
+
+    def test_adicionar_produto(self):
+        """
+        Testa se o produto é adicionado corretamente ao inventário.
+        """
+        adicionar_produto()
+        self.assertEqual(len(produtos), 3)  # Verifica se há 3 produtos
+        self.assertEqual(produtos[-1]["nome"], "Smartphone")  # Verifica o último adicionado
+
+    def test_atualizar_produto(self):
+        """
+        Testa se um produto é atualizado corretamente.
+        """
+        atualizar_produto(1, nome="Tablet", preco=2000.0)
+        self.assertEqual(produtos[0]["nome"], "Tablet")  # Verifica a atualização do nome
+        self.assertEqual(produtos[0]["preco"], 2000.0)  # Verifica a atualização do preço
+
+    def test_excluir_produto(self):
+        """
+        Testa se um produto é removido corretamente.
+        """
+        excluir_produto(1)
+        self.assertEqual(len(produtos), 1)  # Verifica se há apenas 1 produto
+        self.assertNotIn({"id": 1}, produtos)  # Verifica que o produto foi removido
+
+    def test_buscar_produto(self):
+        """
+        Testa a busca por produtos pelo nome ou ID.
+        """
+        resultado = buscar_produto("Smartphone")
+        self.assertEqual(len(resultado), 1)  # Verifica se encontrou 1 produto
+        self.assertEqual(resultado[0]["id"], 1)  # Verifica o ID do produto encontrado
+
+if __name__ == "__main__":
+    unittest.main()

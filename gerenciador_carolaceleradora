@@ -1,0 +1,147 @@
+import json   # Importar biblioteca nativa do Python para manipular JSON
+
+# Lista global de produtos
+produtos = []
+
+# Função para carregar os produtos já salvos do arquivo JSON
+def carregar_produtos():
+    try:
+        with open("produtos.json", "r") as arquivo:
+            return json.load(arquivo)
+    except FileNotFoundError:
+        return []
+
+# Função para salvar produtos no arquivo JSON
+def salvar_produtos():
+    with open("produtos.json", "w") as arquivo:
+        json.dump(produtos, arquivo, indent=4)
+    print("Produtos salvos no arquivo produtos.json.")
+
+# Geração de IDs únicos para produtos
+def gerar_id():
+    if produtos:
+        return max(p['id'] for p in produtos) + 1
+    else:
+        return 1
+
+# Função para adicionar produtos com validação
+def adicionar_produto():
+    nome = input("Digite o nome do produto: ").strip()
+    categoria = input("Digite a categoria do produto: ").strip()
+    marca = input("Digite a marca do produto: ").strip()
+    lote = input("Digite o lote do produto: ").strip()
+
+    while True:
+        try:
+            valor_custo = float(input("Digite o valor de custo do produto: "))
+            if valor_custo < 0:
+                print("O valor de custo deve ser um número positivo.")
+                continue
+            break
+        except ValueError:
+            print("Por favor, insira um número válido para o valor de custo.")
+
+    while True:
+        try:
+            quantidade = int(input("Digite a quantidade em estoque: "))
+            if quantidade < 0:
+                print("A quantidade deve ser um número positivo.")
+                continue
+            break
+        except ValueError:
+            print("Por favor, insira um número válido para a quantidade.")
+
+    while True:
+        try:
+            preco = float(input("Digite o preço de venda do produto: "))
+            if preco < 0:
+                print("O preço deve ser um número positivo.")
+                continue
+            break
+        except ValueError:
+            print("Por favor, insira um número válido para o preço.")
+
+    novo_produto = {
+        "id": gerar_id(),
+        "nome": nome,
+        "categoria": categoria,
+        "marca": marca,
+        "lote": lote,
+        "valor_custo": valor_custo,
+        "quantidade": quantidade,
+        "preco": preco
+    }
+    produtos.append(novo_produto)
+    print(f"Produto '{nome}' adicionado com sucesso!")
+
+# Função para listar produtos
+def listar_produtos():
+    if not produtos:
+        print("Nenhum produto cadastrado.")
+    else:
+        print(f"{'ID':<5} {'Nome':<20} {'Categoria':<15} {'Marca':<15} {'Lote':<10} {'Custo':<10} {'Quantidade':<10} {'Preço':<10}")
+        for produto in produtos:
+            print(f"{produto['id']:<5} {produto['nome']:<20} {produto['categoria']:<15} {produto['marca']:<15} {produto['lote']:<10} {produto['valor_custo']:<10.2f} {produto['quantidade']:<10} {produto['preco']:<10.2f}")
+
+# Função para buscar produtos com múltiplos critérios
+def buscar_produto():
+    termo = input("Digite o termo de busca (ID, Nome, Categoria, Marca ou Lote): ").strip().lower()
+    resultados = [p for p in produtos if
+                  termo in str(p["id"]) or
+                  termo in p["nome"].lower() or
+                  termo in p["categoria"].lower() or
+                  termo in p["marca"].lower() or
+                  termo in p["lote"].lower()]
+    if resultados:
+        print(f"{'ID':<5} {'Nome':<20} {'Categoria':<15} {'Marca':<15} {'Lote':<10} {'Custo':<10} {'Quantidade':<10} {'Preço':<10}")
+        for produto in resultados:
+            print(f"{produto['id']:<5} {produto['nome']:<20} {produto['categoria']:<15} {produto['marca']:<15} {produto['lote']:<10} {produto['valor_custo']:<10.2f} {produto['quantidade']:<10} {produto['preco']:<10.2f}")
+    else:
+        print("Nenhum produto encontrado.")
+
+# Relatório de estoque baixo
+def relatorio_estoque_baixo():
+    limite = int(input("Digite o limite de estoque para considerar como baixo: "))
+    produtos_baixo = [p for p in produtos if p['quantidade'] <= limite]
+    if not produtos_baixo:
+        print("Nenhum produto com estoque baixo.")
+    else:
+        print(f"\n=== Produtos com Estoque Abaixo de {limite} ===")
+        print(f"{'ID':<5} {'Nome':<20} {'Quantidade':<10}")
+        for produto in produtos_baixo:
+            print(f"{produto['id']:<5} {produto['nome']:<20} {produto['quantidade']:<10}")
+
+# Exibir menu no terminal
+def exibir_menu():
+    print("\n=== Sistema de Gerenciamento de Produtos - AgilStore ===")
+    print("1. Adicionar Produto")
+    print("2. Listar Produtos")
+    print("3. Buscar Produto")
+    print("4. Relatório de Estoque Baixo")
+    print("5. Salvar e Sair")
+
+# Loop principal
+def main():
+    global produtos
+    produtos = carregar_produtos()
+
+    while True:
+        exibir_menu()
+        opcao = input("Escolha uma opção: ").strip()
+        if opcao == "1":
+            adicionar_produto()
+        elif opcao == "2":
+            listar_produtos()
+        elif opcao == "3":
+            buscar_produto()
+        elif opcao == "4":
+            relatorio_estoque_baixo()
+        elif opcao == "5":
+            salvar_produtos()
+            print("Saindo do sistema...")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+if __name__ == "__main__":
+    main()
