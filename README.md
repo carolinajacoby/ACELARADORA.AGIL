@@ -2,6 +2,13 @@
 
 Este sistema foi desenvolvido em Python para gerenciar o inventário de produtos de uma loja fictícia chamada **AgilStore**. Ele permite o controle completo de produtos, incluindo cadastro, atualização, exclusão e geração de relatórios.
 
+# Tecnologias Utilizadas #
+
+- 🐍 **Python**: Linguagem principal utilizada no desenvolvimento.
+- ✅ **Pytest**: Framework utilizado para testes automatizados.
+- 📄 **JSON**: Formato utilizado para persistência de dados.
+- 💻 **CLI (Command-Line Interface)**: Interface do sistema baseada em linha de comando.
+
 ## Funcionalidades Adicionadas pela Desenvolvedora
 
 **Cadastro de Lote, Marca e Valor de Custo**: Para melhorar a gestão do inventário e facilitar a identificação de produtos em situações críticas, como **recalls**, foram adicionados campos para **lote**, **marca** e **valor de custo** aos produtos cadastrados no sistema.
